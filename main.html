@@ -1,0 +1,404 @@
+import React, { useState } from 'react';
+import { Shield, Sparkles, Droplets, Car, CheckCircle, AlertCircle, Clock, Menu, X, ChevronRight, Star } from "lucide-react";
+
+const App = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [activeTab, setActiveTab] = useState('coating');
+
+    return (
+        <div className="min-h-screen bg-slate-900 text-slate-200 font-sans selection:bg-sky-500/30">
+            {/* Custom Styles & Fonts */}
+            <style>{`
+                @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Orbitron:wght@400;700&display=swap');
+                
+                body {
+                    font-family: 'Noto Sans JP', sans-serif;
+                }
+                .font-orbitron {
+                    font-family: 'Orbitron', sans-serif;
+                }
+                .gradient-text {
+                    background: linear-gradient(to right, #38bdf8, #818cf8);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+            `}</style>
+
+            {/* Navbar */}
+            <nav className="fixed w-full z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-700">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex items-center justify-between h-16">
+                        <div className="flex items-center">
+                            <span className="text-xl font-bold font-orbitron tracking-wider text-white">
+                                RYUGASAKI <span className="text-sky-400">DETAILING</span>
+                            </span>
+                        </div>
+                        <div className="hidden md:block">
+                            <div className="ml-10 flex items-baseline space-x-8">
+                                <a href="#concept" className="hover:text-sky-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Concept</a>
+                                <a href="#menu" className="hover:text-sky-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Menu</a>
+                                <a href="#comparison" className="hover:text-sky-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Why Us</a>
+                                <a href="#access" className="bg-sky-600 hover:bg-sky-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">ご予約・お問い合わせ</a>
+                            </div>
+                        </div>
+                        <div className="-mr-2 flex md:hidden">
+                            <button onClick={() => setIsOpen(!isOpen)} className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                                {isOpen ? <X size={24} /> : <Menu size={24} />}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {/* Mobile menu */}
+                {isOpen && (
+                    <div className="md:hidden bg-slate-800 border-b border-slate-700">
+                        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                            <a href="#concept" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Concept</a>
+                            <a href="#menu" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Menu</a>
+                            <a href="#comparison" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Why Us</a>
+                            <a href="#access" className="text-white bg-sky-600 block px-3 py-2 rounded-md text-base font-medium">ご予約</a>
+                        </div>
+                    </div>
+                )}
+            </nav>
+
+            {/* Hero Section */}
+            <div className="relative h-screen flex items-center justify-center overflow-hidden">
+                <div className="absolute inset-0 z-0">
+                    <img 
+                        src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" 
+                        alt="Luxury Car Detailing" 
+                        className="w-full h-full object-cover opacity-40"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent"></div>
+                </div>
+                
+                <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+                    <div className="inline-block px-4 py-1 mb-4 border border-sky-500/50 rounded-full bg-sky-900/20 backdrop-blur-sm">
+                        <span className="text-sky-400 text-sm font-semibold tracking-wider">PREMIUM AUTO CARE</span>
+                    </div>
+                    <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                        塗装を削らない、<br />
+                        <span className="gradient-text">美観の保存。</span>
+                    </h1>
+                    <p className="text-xl md:text-2xl text-gray-300 mb-8 font-light">
+                        Paint Preservation
+                    </p>
+                    <p className="text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                        重研磨で塗装を薄くする時代は終わりました。<br />
+                        最新の充填技術(Filling)と化学の力で、愛車の塗装を「護りながら」輝かせます。
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#menu" className="px-8 py-4 bg-sky-600 hover:bg-sky-500 text-white rounded-lg font-bold transition-all shadow-lg shadow-sky-900/50 flex items-center justify-center gap-2">
+                            メニューを見る <ChevronRight size={20} />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {/* Concept Section */}
+            <section id="concept" className="py-20 bg-slate-900">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Our Philosophy</h2>
+                        <div className="w-20 h-1 bg-sky-500 mx-auto rounded-full"></div>
+                        <p className="mt-4 text-gray-400">なぜ、今「削らない」ディテイリングなのか</p>
+                    </div>
+                    
+                    <div className="grid md:grid-cols-3 gap-10">
+                        <div className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-sky-500/50 transition-all duration-300 group">
+                            <div className="mb-6 bg-slate-900 w-16 h-16 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <Shield size={40} className="text-sky-400" />
+                            </div>
+                            <h3 className="text-xl font-bold text-white mb-3">Paint Preservation</h3>
+                            <p className="text-gray-400 leading-relaxed">
+                                「傷を削り落とす」のではなく「埋めて見えなくする」次世代のアプローチ。限りある塗装膜厚を温存し、長く美しい状態を保ちます。
+                            </p>
+                        </div>
+                        <div className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-sky-500/50 transition-all duration-300 group">
+                            <div className="mb-6 bg-slate-900 w-16 h-16 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <Sparkles size={40} className="text-sky-400" />
+                            </div>
+                            <h3 className="text-xl font-bold text-white mb-3">Filling Technology</h3>
+                            <p className="text-gray-400 leading-relaxed">
+                                CarPro Essence等の最新ケミカルを使用。プライマー層が傷を埋め、その上に強固なコーティング被膜を形成することで、深みのある艶を実現します。
+                            </p>
+                        </div>
+                        <div className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-sky-500/50 transition-all duration-300 group">
+                            <div className="mb-6 bg-slate-900 w-16 h-16 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <CheckCircle size={40} className="text-sky-400" />
+                            </div>
+                            <h3 className="text-xl font-bold text-white mb-3">Standard Polish</h3>
+                            <p className="text-gray-400 leading-relaxed">
+                                量販店では別料金となる「下地処理（軽研磨）」を標準化。下地が整っているからこそ、コーティング本来の性能が発揮されます。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Menu Section */}
+            <section id="menu" className="py-20 bg-slate-950">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Service Menu</h2>
+                        <p className="text-gray-400">Mサイズ（プリウス・CX-5等）基準の税込価格です</p>
+                    </div>
+
+                    <div className="flex justify-center mb-12">
+                        <div className="bg-slate-800 p-1 rounded-xl inline-flex">
+                            <button 
+                                onClick={() => setActiveTab('coating')}
+                                className={`px-8 py-3 rounded-lg text-sm font-bold transition-all ${activeTab === 'coating' ? 'bg-sky-600 text-white shadow-lg' : 'text-gray-400 hover:text-white'}`}
+                            >
+                                Coating
+                            </button>
+                            <button 
+                                onClick={() => setActiveTab('wash')}
+                                className={`px-8 py-3 rounded-lg text-sm font-bold transition-all ${activeTab === 'wash' ? 'bg-sky-600 text-white shadow-lg' : 'text-gray-400 hover:text-white'}`}
+                            >
+                                Wash & Care
+                            </button>
+                        </div>
+                    </div>
+
+                    {activeTab === 'coating' && (
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {/* Coating: Ume */}
+                            <div className="relative bg-slate-900 rounded-2xl p-8 border-2 border-slate-600 flex flex-col">
+                                <div className="mb-4">
+                                    <span className="text-sm font-bold px-3 py-1 rounded-full bg-slate-800 text-gray-400">
+                                        梅 - セラミックコート
+                                    </span>
+                                </div>
+                                <h3 className="text-3xl font-bold text-white mb-2">¥22,000</h3>
+                                <p className="text-sky-400 text-sm font-medium mb-6">高コスパ・エントリー</p>
+                                <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">
+                                    純水洗車＋鉄粉除去＋乾式施工。研磨機を使わないリスクゼロ施工でありながら、セラミック特有の犠牲被膜で塗装を強力に守ります。
+                                </p>
+                                <div className="bg-slate-800/50 rounded-lg p-4 mb-6">
+                                    <p className="text-xs text-gray-500 uppercase mb-2">使用ケミカル</p>
+                                    <p className="text-sm text-gray-300 font-mono">ジェントルトウキョウ オーデコート</p>
+                                </div>
+                                <ul className="space-y-3 mb-8">
+                                    <li className="flex items-center text-sm text-gray-300"><CheckCircle size={16} className="text-sky-500 mr-2" />純水洗車</li>
+                                    <li className="flex items-center text-sm text-gray-300"><CheckCircle size={16} className="text-sky-500 mr-2" />鉄粉除去</li>
+                                    <li className="flex items-center text-sm text-gray-300"><CheckCircle size={16} className="text-sky-500 mr-2" />セラミック施工</li>
+                                </ul>
+                            </div>
+
+                            {/* Coating: Take (Best Value) */}
+                            <div className="relative bg-slate-900 rounded-2xl p-8 border-2 border-sky-500 shadow-2xl shadow-sky-900/20 transform md:scale-105 z-10 flex flex-col">
+                                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-sky-600 text-white px-4 py-1 rounded-full text-xs font-bold tracking-wider uppercase">
+                                    Best Value
+                                </div>
+                                <div className="mb-4">
+                                    <span className="text-sm font-bold px-3 py-1 rounded-full bg-sky-900/30 text-sky-400">
+                                        竹 - セラミック・エナメル
+                                    </span>
+                                </div>
+                                <h3 className="text-3xl font-bold text-white mb-2">¥45,000</h3>
+                                <p className="text-sky-400 text-sm font-medium mb-6">圧倒的一番人気</p>
+                                <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">
+                                    【当店推奨】量販店ではオプション扱いの「研磨」を標準装備。塗装を磨いて整え、プライマー層で傷を埋めてからコーティングします。
+                                </p>
+                                <div className="bg-slate-800/50 rounded-lg p-4 mb-6">
+                                    <p className="text-xs text-gray-500 uppercase mb-2">使用ケミカル</p>
+                                    <p className="text-sm text-gray-300 font-mono">CarPro Essence + オーデコート</p>
+                                </div>
+                                <ul className="space-y-3 mb-8">
+                                    <li className="flex items-center text-sm text-gray-300"><CheckCircle size={16} className="text-sky-500 mr-2" />鉄粉除去</li>
+                                    <li className="flex items-center text-sm text-gray-300"><CheckCircle size={16} className="text-sky-500 mr-2" />軽研磨 (Polish)</li>
+                                    <li className="flex items-center text-sm text-gray-300"><CheckCircle size={16} className="text-sky-500 mr-2" />プライマー処理</li>
+                                    <li className="flex items-center text-sm text-gray-300"><CheckCircle size={16} className="text-sky-500 mr-2" />1年耐久</li>
+                                </ul>
+                            </div>
+
+                            {/* Coating: Matsu */}
+                            <div className="relative bg-slate-900 rounded-2xl p-8 border-2 border-yellow-600/50 flex flex-col">
+                                <div className="mb-4">
+                                    <span className="text-sm font-bold px-3 py-1 rounded-full bg-yellow-900/30 text-yellow-400">
+                                        松 - フラグシップ・アーマー
+                                    </span>
+                                </div>
+                                <h3 className="text-3xl font-bold text-white mb-2">¥60,000</h3>
+                                <p className="text-sky-400 text-sm font-medium mb-6">最高峰ナノカーボン</p>
+                                <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">
+                                    徹底した下地処理に加え、酸性雨や薬品に強いナノカーボンコーティングを施工。物理的なガード力と深い艶を両立した最上位プラン。
+                                </p>
+                                <div className="bg-slate-800/50 rounded-lg p-4 mb-6">
+                                    <p className="text-xs text-gray-500 uppercase mb-2">使用ケミカル</p>
+                                    <p className="text-sm text-gray-300 font-mono">CarPro Essence + 西日本ケミカル N°999eF</p>
+                                </div>
+                                <ul className="space-y-3 mb-8">
+                                    <li className="flex items-center text-sm text-gray-300"><CheckCircle size={16} className="text-sky-500 mr-2" />徹底下地処理</li>
+                                    <li className="flex items-center text-sm text-gray-300"><CheckCircle size={16} className="text-sky-500 mr-2" />Essence研磨</li>
+                                    <li className="flex items-center text-sm text-gray-300"><CheckCircle size={16} className="text-sky-500 mr-2" />耐薬品性ガード</li>
+                                    <li className="flex items-center text-sm text-gray-300"><CheckCircle size={16} className="text-sky-500 mr-2" />3年耐久</li>
+                                </ul>
+                            </div>
+                        </div>
+                    )}
+
+                    {activeTab === 'wash' && (
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {/* Wash: Ume */}
+                            <div className="bg-slate-900 rounded-2xl p-8 border border-slate-800">
+                                <div className="mb-4">
+                                    <span className="text-sm font-bold text-gray-400">梅 - Quick Wash</span>
+                                </div>
+                                <h3 className="text-2xl font-bold text-white mb-2">¥4,000</h3>
+                                <p className="text-sky-400 text-sm font-medium mb-6">会員限定メンテナンス</p>
+                                <p className="text-gray-400 text-sm leading-relaxed mb-6 h-20">
+                                    当店コーティング施工車専用。純水高圧洗浄と優しい手洗いで、水シミのリスクを最小限に抑えます。
+                                </p>
+                                <div className="space-y-3 border-t border-slate-800 pt-6">
+                                    <div className="flex items-center text-sm text-gray-300"><Droplets size={14} className="text-sky-500 mr-2" />純水高圧洗浄</div>
+                                    <div className="flex items-center text-sm text-gray-300"><Droplets size={14} className="text-sky-500 mr-2" />中性泡プレウォッシュ</div>
+                                    <div className="flex items-center text-sm text-gray-300"><Droplets size={14} className="text-sky-500 mr-2" />手洗い</div>
+                                    <div className="flex items-center text-sm text-gray-300"><Droplets size={14} className="text-sky-500 mr-2" />トップコート</div>
+                                </div>
+                            </div>
+
+                            {/* Wash: Take */}
+                            <div className="bg-slate-900 rounded-2xl p-8 border border-sky-500/50">
+                                <div className="mb-4">
+                                    <span className="text-sm font-bold text-gray-400">竹 - Standard Maintenance</span>
+                                </div>
+                                <h3 className="text-2xl font-bold text-white mb-2">¥6,000</h3>
+                                <p className="text-sky-400 text-sm font-medium mb-6">極上の純水手洗い</p>
+                                <p className="text-gray-400 text-sm leading-relaxed mb-6 h-20">
+                                    2〜3ヶ月に1回の定期ケア。普段の洗車では落ちない汚れを、プロの技術とケミカルでリセットします。
+                                </p>
+                                <div className="space-y-3 border-t border-slate-800 pt-6">
+                                    <div className="flex items-center text-sm text-gray-300"><Droplets size={14} className="text-sky-500 mr-2" />鉄粉/スケール除去</div>
+                                    <div className="flex items-center text-sm text-gray-300"><Droplets size={14} className="text-sky-500 mr-2" />濃厚泡洗浄</div>
+                                    <div className="flex items-center text-sm text-gray-300"><Droplets size={14} className="text-sky-500 mr-2" />細部ブラシ洗浄</div>
+                                    <div className="flex items-center text-sm text-gray-300"><Droplets size={14} className="text-sky-500 mr-2" />タイヤワックス</div>
+                                </div>
+                            </div>
+
+                            {/* Wash: Matsu */}
+                            <div className="bg-slate-900 rounded-2xl p-8 border border-slate-800">
+                                <div className="mb-4">
+                                    <span className="text-sm font-bold text-gray-400">松 - Deep Cleansing</span>
+                                </div>
+                                <h3 className="text-2xl font-bold text-white mb-2">¥12,000 ~</h3>
+                                <p className="text-sky-400 text-sm font-medium mb-6">すっぴんリセット</p>
+                                <p className="text-gray-400 text-sm leading-relaxed mb-6 h-20">
+                                    「撥水が弱まった」「くすみが気になる」方へ。固着したスケールや油分を徹底除去し、コーティング被膜をリセットします。
+                                </p>
+                                <div className="space-y-3 border-t border-slate-800 pt-6">
+                                    <div className="flex items-center text-sm text-gray-300"><Droplets size={14} className="text-sky-500 mr-2" />Standard内容全般</div>
+                                    <div className="flex items-center text-sm text-gray-300"><Droplets size={14} className="text-sky-500 mr-2" />徹底スケール除去</div>
+                                    <div className="flex items-center text-sm text-gray-300"><Droplets size={14} className="text-sky-500 mr-2" />油分除去</div>
+                                    <div className="flex items-center text-sm text-gray-300"><Droplets size={14} className="text-sky-500 mr-2" />高耐久トップコート</div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </section>
+
+            {/* Comparison Section */}
+            <section id="comparison" className="py-20 bg-slate-900">
+                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-8 md:p-12 border border-slate-700">
+                        <div className="text-center mb-10">
+                            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">なぜ、「竹」コースが選ばれるのか</h2>
+                            <p className="text-gray-400">同価格帯の量販店コーティングとの決定的な違い</p>
+                        </div>
+
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left border-collapse">
+                                <thead>
+                                    <tr className="border-b border-slate-700">
+                                        <th className="py-4 px-4 text-gray-400 font-medium">比較項目</th>
+                                        <th className="py-4 px-4 text-gray-500 font-medium w-1/3">一般的な量販店</th>
+                                        <th className="py-4 px-4 text-sky-400 font-bold text-lg w-1/3 bg-slate-800/50 rounded-t-lg">Ryugasaki Detailing</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="text-gray-300">
+                                    <tr className="border-b border-slate-700/50">
+                                        <td className="py-4 px-4 font-medium">価格帯 (Mサイズ)</td>
+                                        <td className="py-4 px-4">¥30,000 〜 ¥60,000</td>
+                                        <td className="py-4 px-4 bg-slate-800/50 font-bold text-white">¥45,000 (竹コース)</td>
+                                    </tr>
+                                    <tr className="border-b border-slate-700/50">
+                                        <td className="py-4 px-4 font-medium">下地処理 (研磨)</td>
+                                        <td className="py-4 px-4 text-red-400 flex items-center gap-2">
+                                            <X size={16} /> 別料金 (+¥20,000〜)
+                                        </td>
+                                        <td className="py-4 px-4 bg-slate-800/50 text-green-400 font-bold flex items-center gap-2">
+                                            <CheckCircle size={16} /> 標準込み
+                                        </td>
+                                    </tr>
+                                    <tr className="border-b border-slate-700/50">
+                                        <td className="py-4 px-4 font-medium">傷の処理</td>
+                                        <td className="py-4 px-4">埋めずに塗るため、傷が残る場合も</td>
+                                        <td className="py-4 px-4 bg-slate-800/50">充填技術(Filling)で傷を埋める</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="py-4 px-4 font-medium">使用ケミカル</td>
+                                        <td className="py-4 px-4">独自OEM品</td>
+                                        <td className="py-4 px-4 bg-slate-800/50 rounded-b-lg">CarPro / ジェントルトウキョウ等の最新ブランド</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div className="mt-8 bg-sky-900/20 border border-sky-500/30 p-4 rounded-lg flex items-start gap-3">
+                            <AlertCircle className="text-sky-400 flex-shrink-0 mt-1" size={20} />
+                            <p className="text-sm text-sky-100">
+                                当店は「重研磨」は行いません。塗装の膜厚を減らさず、特殊なプライマーで傷を埋めて平滑にするため、愛車の価値を損ないません。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Footer */}
+            <footer id="access" className="bg-slate-950 border-t border-slate-800 pt-16 pb-8">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid md:grid-cols-2 gap-12 mb-12">
+                        <div>
+                            <h3 className="text-2xl font-bold text-white font-orbitron mb-6">RYUGASAKI <span className="text-sky-500">DETAILING</span></h3>
+                            <p className="text-gray-400 mb-6 max-w-md">
+                                週末だけの特別な隠れ家。量販店では満足できない、けれど専門店は敷居が高い。<br />
+                                そんなあなたのための、塗装を護るディテイリングスタジオ。
+                            </p>
+                            <div className="space-y-4">
+                                <div className="flex items-center text-gray-300">
+                                    <Clock className="mr-3 text-sky-500" size={20} />
+                                    <span>土日祝 限定営業 (完全予約制)</span>
+                                </div>
+                                <div className="flex items-center text-gray-300">
+                                    <Car className="mr-3 text-sky-500" size={20} />
+                                    <span>茨城県龍ケ崎市 (詳細な場所はご予約時にお伝えします)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="bg-slate-900 p-8 rounded-2xl border border-slate-800">
+                            <h4 className="text-xl font-bold text-white mb-4">お問い合わせ・ご予約</h4>
+                            <p className="text-gray-400 mb-6 text-sm">
+                                現在、ご予約が混み合っております。施工をご希望の方は、お早めにSNSまたはフォームよりご連絡ください。
+                            </p>
+                            <button className="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold py-3 px-4 rounded-lg transition-colors mb-4">
+                                公式LINEから予約する
+                            </button>
+                            <div className="text-center">
+                                <a href="#" className="text-sm text-gray-500 hover:text-sky-400 transition-colors">Instagramで施工事例を見る</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="border-t border-slate-900 pt-8 text-center">
+                        <p className="text-gray-600 text-sm">
+                            &copy; {new Date().getFullYear()} Ryugasaki Auto Detailing. All Rights Reserved.
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    );
+};
+
+export default App;
